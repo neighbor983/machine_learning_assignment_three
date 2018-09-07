@@ -76,3 +76,35 @@ Gini_Gain_Sunny_Windy = Gini_index_Outlook_Sunny - ( 2.0 / 5.0 ) * Gini_index_Su
 #GI(DRainyMild) 
 Gini_index_Rainy_Mild = 1 - ( 2.0 / 3.0 ) ** 2 - ( 1.0 / 3.0 ) ** 2;
 print(Gini_index_Rainy_Mild);
+
+#GI(DRainyCool) 
+Gini_index_Rainy_Cool = 1 - ( 1.0 / 2.0 ) ** 2 - ( 1.0 / 2.0 ) ** 2;
+print(Gini_index_Rainy_Cool);
+
+#GG(Rainy, Temperature) 
+Gini_Gain_Rainy_Temperature = Gini_index_Outlook_Rainy - ( 3.0 / 5.0 ) * Gini_index_Rainy_Mild - ( 2.0 / 5.0 ) * Gini_index_Rainy_Cool;
+print(Gini_Gain_Rainy_Temperature);
+
+#GI(DRainyHigh) 
+Gini_index_Rainy_High = 1 - ( 1.0 / 2.0 ) ** 2 - ( 1.0 / 2.0 ) ** 2;
+print(Gini_index_Rainy_High);
+
+#GI(DRainyNormal) 
+Gini_index_Rainy_Normal = 1 - ( 2.0 / 3.0 ) ** 2 - ( 1.0 / 3.0 ) ** 2;
+print(Gini_index_Rainy_Normal);
+
+#GG(Rainy, Humidity) 
+Gini_Gain_Rainy_Humidity = Gini_index_Outlook_Rainy - ( 2 / 5 ) * Gini_index_Rainy_High - ( 3 / 5 ) * Gini_index_Rainy_Normal;
+print(Gini_Gain_Rainy_Humidity);
+
+#GI(DRainyTrue)
+Gini_index_Rainy_True = 1 - ( 2.0 / 2.0 ) ** 2; 
+print(Gini_index_Rainy_True);
+
+#GI(DRainyFalse)
+Gini_index_Rainy_False = 1 - ( 3.0 / 3.0) ** 2;
+print(Gini_index_Rainy_False);
+
+#GG(Rainy, Windy) 
+Gini_Gain_Rainy_Windy = Gini_index_Outlook_Rainy - ( 2 / 5 ) * Gini_index_Rainy_True - ( 3 / 5 ) * Gini_index_Rainy_False;
+print(Gini_Gain_Rainy_Windy);
