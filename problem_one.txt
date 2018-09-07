@@ -19,3 +19,197 @@ In the training data given below, each data item has 4 attributes Outlook, Tempe
 
 Learn the classification rules using iterative dichotomization algorithm that selects the attribute to split data at each stage of learning based on Gini-Index.  
 
+GI(D) = 1- ∑i=1 to k[ pi]2
+
+1 - ( 5 / 14 ) ^ 2 - ( 9 / 14 ) ^ 2 = 0.4591836734693877 ~ .459
+
+GG(D, A) = GI(D) - ∑i=1 to n[ |Di| / |D| ] GI(Di)
+
+Gini-gain for Outlook
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+
+
+GI(DSunny) = 1 – ( 2 / 5 ) ^ 2 - ( 3 / 5 ) ^ 2 = 0.48
+| DSunny| = 5
+
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 3	         | Overcast	| Hot	        | High	   | False | Yes  |
+| 7	         | Overcast	| Cool	        | Normal   | True  | Yes  |
+| 12         | Overcast	| Mild	        | High	   | True  | Yes  |
+| 13         | Overcast	| Hot	        | Normal   | False | Yes  |
+
+GI(DOvercast) = 1 - ( 4 / 4 ) ^ 2 = 0
+| DOvercast | = 4
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 4	         | Rainy	| Mild	        | High	   | False | Yes  |
+| 5          | Rainy	| Cool	        | Normal   | False | Yes  |
+| 6          | Rainy	| Cool	        | Normal   | True  | No   |
+| 10         | Rainy	| Mild	        | Normal   | False | Yes  |
+| 14         | Rainy	| Mild	        | High	   | True  | No   |
+
+GI(DRainy) = 1 - ( 3 / 5 ) ^ 2 - ( 2 / 5 ) ^ 2 = 0.48
+| DRainy | = 5
+
+GG(D, Outlook) = 0.4591836734693877 – ( 5 / 14 ) * .48 – ( 4 / 14 ) * ( 0 ) - ( 5 / 14 ) * .48 = 0.11632653061224485 ~ .116
+
+Gini-gain for Temperature
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 3	         | Overcast	| Hot	        | High	   | False | Yes  |
+| 13         | Overcast	| Hot	        | Normal   | False | Yes  |
+
+GI(DHot) = 1 - ( 2 / 4 ) ^ 2 - ( 2 / 4 ) ^ 2 = .5
+| DHot | = 4
+
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 4	         | Rainy	| Mild	        | High	   | False | Yes  |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 10         | Rainy	| Mild	        | Normal   | False | Yes  |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+| 12         | Overcast	| Mild	        | High	   | True  | Yes  |
+| 14         | Rainy	| Mild	        | High	   | True  | No   |
+
+GI(DMild) = 1 - ( 4 / 6 ) ^ 2 - ( 2 / 6 ) ^ 2 = 0.4444444444444445 ~.444 
+| DMild | = 6
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 5          | Rainy	| Cool	        | Normal   | False | Yes  |
+| 6          | Rainy	| Cool	        | Normal   | True  | No   |
+| 7	         | Overcast	| Cool	        | Normal   | True  | Yes  |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+
+GI(DCool) = 1 - ( 3 / 4 ) ^ 2 -( 1 / 4 ) ^ 2 = 0.375
+| DCool | = 4
+
+GG(D, Temperature) = 0.4591836734693877 – ( 4 / 14 ) * .5 – ( 6 / 14 ) * (  0.4444444444444445 ) - ( 4 / 14 ) * 0.375 = 0.018707482993197258 ~ .019
+
+Gini-gain for Humidity
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 3	         | Overcast	| Hot	        | High	   | False | Yes  |
+| 4	         | Rainy	| Mild	        | High	   | False | Yes  |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 12         | Overcast	| Mild	        | High	   | True  | Yes  |
+| 14         | Rainy	| Mild	        | High	   | True  | No   |
+
+GI(DHigh) = 1 - ( 3 / 7 ) ^ 2 - ( 4 / 7 ) ^ 2 = 0.489795918367347 ~ .49
+| DHigh | = 7
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 5          | Rainy	| Cool	        | Normal   | False | Yes  |
+| 6          | Rainy	| Cool	        | Normal   | True  | No   |
+| 7	         | Overcast	| Cool	        | Normal   | True  | Yes  |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+| 10         | Rainy	| Mild	        | Normal   | False | Yes  |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+| 13         | Overcast	| Hot	        | Normal   | False | Yes  |
+
+GI(DNormal) = 1 - ( 6 / 7 ) ^ 2 - ( 1 / 7 ) ^ 2 = 0.24489795918367355 ~ .244
+| DNormal | = 7
+
+GG(D, Humidity) = 0.4591836734693877 – ( 7 / 14 ) * 0.489795918367347 - ( 7 / 14) * 0.24489795918367355 = 0.09183673469387744 ~ .092
+
+Gini-gain for Windy
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 6          | Rainy	| Cool	        | Normal   | True  | No   |
+| 7	         | Overcast	| Cool	        | Normal   | True  | Yes  |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+| 12         | Overcast	| Mild	        | High	   | True  | Yes  |
+| 14         | Rainy	| Mild	        | High	   | True  | No   |
+
+GI(DTrue) = 1 - ( 3 / 6 ) ^ 2 - ( 3 / 6 ) ^ 2 = .5
+| DTrue | = 6
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 3	         | Overcast	| Hot	        | High	   | False | Yes  |
+| 4	         | Rainy	| Mild	        | High	   | False | Yes  |
+| 5          | Rainy	| Cool	        | Normal   | False | Yes  |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+| 10         | Rainy	| Mild	        | Normal   | False | Yes  |
+| 13         | Overcast	| Hot	        | Normal   | False | Yes  |
+
+GI(DFalse) = 1 - (6 / 8) ^ 2 - (2 / 8) ^ 2 = 0.375
+| DTrue | = 8
+
+GG(D, Windy) = 0.4591836734693877 – ( 6 / 14 ) * .5 - ( 8 / 14) * .375 = 0.030612244897959162 ~ .031
+
+Attribute Outlook has the highest Gini-gain. Therefore, the dataset should be split at the root node using Outlook.
+
+        Entire Data Set
+        /    |      \
+Overcast    Sunny   Rainy
+
+Overcast has only Yes for Play so no need to go any further down that path
+
+Sunny
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+
+Gini-gain for Tempature
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+
+GI(DSunnyHot) = 1 – ( 2 / 2 ) ^ 2 = 0
+| DSunnyHot| = 2
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+
+GI(DSunnyMild) = 1 – ( 1 / 2 ) ^ 2  - ( 1 / 2 ) ^ 2 =  0.5
+| DSunnyMild| = 2
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+
+GI(DSunnyCool) = 1 – ( 1 / 1 ) ^ 2 =  0
+| DSunnyCool| = 1
+
+GG(Sunny, Tempature) = 0.48 - ( 2 / 5 ) * 0 - ( 2 / 5 ) * .5  - ( 1 / 5 ) * 0 = 0.27999999999999997 ~ 0.28
+
+
+Gini-gain for Humidity
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+
+GI(DSunnyHigh) = 1 - ( 3/ 3) ^ 2 = 0
+| DSunnyHigh | = 3
