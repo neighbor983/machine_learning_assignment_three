@@ -45,20 +45,34 @@ Gini_Gain_Windy =  Gini_index_Entire_Data_set - ( 6 / 14 ) * Gini_index_Windy_Tr
 
 #GI(DSunnyHot) 
 Gini_index_Sunny_Hot = 1 - ( 2.0 / 2.0 ) ** 2;
-print(Gini_index_Sunny_Hot);
 
 #GI(DSunnyMild)
 Gini_index_Sunny_Mild = 1 - ( 1.0 / 2.0 ) ** 2  - ( 1.0 / 2.0 ) ** 2;
-print(Gini_index_Sunny_Mild);
 
 #GI(DSunnyCool)
 Gini_index_Sunny_Cool = 1 - ( 1.0 / 1.0 ) ** 2;
-print(Gini_index_Sunny_Cool);
 
 #GG(Sunny, Tempature) 
 Gini_Gain_Sunny_Temperature = Gini_index_Outlook_Sunny - ( 2 / 5 ) * Gini_index_Sunny_Hot - ( 2.0 / 5.0 ) * Gini_index_Sunny_Mild  - ( 1.0 / 5.0 ) * Gini_index_Sunny_Cool;
-print(Gini_Gain_Sunny_Temperature);
 
 #GI(DSunnyHigh)
 Gini_index_Sunny_High = 1 - ( 3.0 / 3.0 ) ** 2;
-print(Gini_index_Sunny_High);
+
+#GI(DSunnyNormal) 
+Gini_index_Sunny_Normal = 1 - ( 2.0 / 2.0 ) ** 2;
+
+#GG(Sunny, Humidity) 
+Gini_Gain_Sunny_Humidity = Gini_index_Outlook_Sunny - ( 3 / 5 ) * Gini_index_Sunny_High - ( 2 / 5 ) * Gini_index_Sunny_Normal;
+
+#GI(DSunnyTrue) 
+Gini_index_Sunny_True = 1 - ( 1.0 / 2.0 ) ** 2 - ( 1.0 / 2.0 ) ** 2;
+
+#GI(DSunnyFalse) 
+Gini_index_Sunny_False = 1 - ( 1.0 / 3.0 ) ** 2 - ( 2.0 / 3.0 ) ** 2;
+
+#GG(Sunny, Windy) 
+Gini_Gain_Sunny_Windy = Gini_index_Outlook_Sunny - ( 2.0 / 5.0 ) * Gini_index_Sunny_True  - ( 3.0 / 5.0 ) * Gini_index_Sunny_False;
+
+#GI(DRainyMild) 
+Gini_index_Rainy_Mild = 1 - ( 2.0 / 3.0 ) ** 2 - ( 1.0 / 3.0 ) ** 2;
+print(Gini_index_Rainy_Mild);

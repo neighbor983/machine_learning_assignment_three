@@ -164,9 +164,9 @@ Attribute Outlook has the highest Gini-gain. Therefore, the dataset should be sp
 
         Entire Data Set
         /    |      \
-Overcast    Sunny   Rainy
+Overcast    Sunny   Rainy       Outlook
 
-Overcast has only Yes for Play so no need to go any further down that path
+Overcast Outlook has only Yes for Play so no need to go any further down that path
 
 Sunny
 | Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
@@ -211,5 +211,68 @@ Gini-gain for Humidity
 | 2	         | Sunny	| Hot	        | High     | True  | No   |
 | 8	         | Sunny	| Mild	        | High	   | False | No   |
 
-GI(DSunnyHigh) = 1 - ( 3/ 3) ^ 2 = 0
+GI(DSunnyHigh) = 1 - ( 3 / 3) ^ 2 = 0
 | DSunnyHigh | = 3
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+
+GI(DSunnyNormal) = 1 - ( 2 / 2) ^ 2 = 0
+| DSunnyNormal | = 2
+
+GG(Sunny, Humidity) = 0.48 - ( 3 / 5 ) * 0 - ( 2 / 5 ) * 0 = .48
+
+
+Gini-gain for Windy
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 2	         | Sunny	| Hot	        | High     | True  | No   |
+| 11         | Sunny	| Mild	        | Normal   | True  | Yes  |
+
+GI(DSunnyTrue) = 1 - ( 1 / 2) ^ 2 - ( 1 / 2 ) ^ 2 = 0.5
+| DSunnyTrue | = 2
+
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 1	         | Sunny	| Hot           | High	   | False | No   |
+| 8	         | Sunny	| Mild	        | High	   | False | No   |
+| 9	         | Sunny	| Cool	        | Normal   | False | Yes  |
+
+GI(DSunnyFalse) = 1 - ( 1 / 3 ) ^ 2 - ( 2 / 3 ) ^ 2 = 0.4444444444444444 ~ .444
+| DSunnyFalse | = 3
+
+GG(Sunny, Windy) = 0.48 - ( 1 / 3 ) * .480 - ( 2 / 3 ) * 0.4444444444444444 = 0.013333333333333308 ~ 0.013
+
+                Entire Data Set
+                /    |      \
+        Overcast    Sunny   Rainy           Outlook
+                   /     \
+                High    Normal              Humidity
+
+Attribute Humidity has the highest Gini-gain. Therefore, the Sunny dataset should be split at the using Humidity.
+
+Overcast Outlook has only Yes for Play so no need to go any further down that path
+High Humidity has only No for Play so no need to go any further down that path
+Nomral Humidity has only Yes for Play so no need to go any further down that path
+
+
+Rainy
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 4	         | Rainy	| Mild	        | High	   | False | Yes  |
+| 5          | Rainy	| Cool	        | Normal   | False | Yes  |
+| 6          | Rainy	| Cool	        | Normal   | True  | No   |
+| 10         | Rainy	| Mild	        | Normal   | False | Yes  |
+| 14         | Rainy	| Mild	        | High	   | True  | No   |
+
+Gini-gain for Temperature
+| Serial No. |	Outlook |	Temperature | Humidity | Windy | Play |
+| ---------- | -------- | ------------- | -------- | ----- | ---- |
+| 4	         | Rainy	| Mild	        | High	   | False | Yes  |
+| 10         | Rainy	| Mild	        | Normal   | False | Yes  |
+| 14         | Rainy	| Mild	        | High	   | True  | No   |
+
+GI(DRainyMild) = 1 - ( 2 / 3 ) ^ 2 - ( 1 / 3 ) ^ 2 = 0.4444444444444445 ~ .444
+| DRainyMild | = 3
